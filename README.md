@@ -2,8 +2,6 @@
 
 Tahmin Macerası, oynayan kişilerin birbiriyle veya sistemi yöneten yapay zekaya (robota) karşı gizli sayı bulma yeteneklerini konuşturduğu, modern arayüzlü ve hızlı bir web tabanlı mobil uygulamadır (PWA).
 
-![Uygulama Teması](logo.png)
-
 ## 🚀 Öne Çıkan Özellikler
 - **Gerçekçi Tek Oyunculu Mod:** Robot rakip tamamen kusursuz tahminde bulunmaz, sınırları belirledikten sonra "insansı" bir hesaplamayla orta noktalara yakın tahminler yürütür. Kullanıcıya adaletli bir eğlence sunar.
 - **Çok Oyunculu Mod (Oda Kur / Katıl):** WebSocket teknolojisine (Node.js vb.) yük bindirmeden, standart "HTTP Polling" iletişim tekniğini kullanarak arkadaşınızla gerçek zamanlı oynamanıza imkan tanır.
