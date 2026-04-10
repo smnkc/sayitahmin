@@ -1,0 +1,17 @@
+{
+  "name": "Tahmin Macerası",
+  "short_name": "Tahmin",
+  "description": "Arkadaşlarınla veya robota karşı sayı tahmin etme oyunu.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

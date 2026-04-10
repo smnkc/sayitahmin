@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <title>Tahmin Macerası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-background"></div>
+    
+    <div class="app-container" id="app">
+        <!-- HEADER -->
+        <header>
+            <h1>Tahmin<span>Macerası</span></h1>
+        </header>
+
+        <!-- SCREENS -->
+        <div id="screen-home" class="screen active">
+            <h2>Hoş Geldiniz</h2>
+            <p>Sayıyı en hızlı tahmin eden kazanır.</p>
+            <div class="menu-buttons">
+                <button class="btn btn-primary" onclick="app.startSinglePlayer()">🤖 Tek Oyunculu (Robot)</button>
+                <button class="btn btn-secondary" onclick="app.showCreateRoom()">🏠 Oda Kur</button>
+                <button class="btn btn-secondary" onclick="app.showJoinRoom()">🤝 Odaya Katıl</button>
+            </div>
+        </div>
+
+        <div id="screen-join" class="screen">
+            <h2>Odaya Katıl</h2>
+            <div class="input-group">
+                <input type="text" id="join-code" placeholder="6 Haneli Oda Kodu" maxlength="6">
+            </div>
+            <div class="menu-buttons">
+                <button class="btn btn-primary" onclick="app.joinRoom()">Katıl</button>
+                <button class="btn btn-ghost" onclick="app.showHome()">Geri Dön</button>
+            </div>
+        </div>
+
+        <div id="screen-waiting" class="screen">
+            <h2>Bekleniyor...</h2>
+            <div class="room-code-display">
+                <p>Oda Kodun:</p>
+                <h1 id="waiting-room-code">---</h1>
+            </div>
+            <p class="pulse-text">Arkadaşının katılması bekleniyor...</p>
+        </div>
+
+        <!-- GAME SCREEN (Shared for Single & Multi) -->
+        <div id="screen-game" class="screen">
+            <h2 id="game-title">Oyun Başlıyor</h2>
+            
+            <div id="setup-phase">
+                <p>Aklından 1-1000 arası bir sayı tut.</p>
+                <div class="input-group">
+                    <input type="number" id="secret-number" placeholder="Sayı belirle (1-1000)" min="1" max="1000">
+                </div>
+                <div class="button-row">
+                    <button class="btn btn-secondary" onclick="app.setRandomSecret()">Rastgele Seç</button>
+                    <button class="btn btn-primary" onclick="app.confirmSecret()">Onayla</button>
+                </div>
+            </div>
+
+            <div id="play-phase" style="display: none;">
+                <div class="status-panel">
+                    <div class="turn-indicator" id="turn-indicator">Sıra Sende!</div>
+                    <div class="game-feedback" id="game-feedback">Tahmin bekleniyor...</div>
+                    <div id="prominent-feedback" style="display: none; font-size: 1.5rem; font-weight: bold; margin-top: 10px; padding: 10px; border-radius: 8px;"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="number" id="guess-number" placeholder="Tahminin..." min="1" max="1000">
+                </div>
+                <!-- Action row -->
+                <button class="btn btn-primary" id="guess-button" onclick="app.makeGuess()">Tahmin Et</button>
+                
+                <div class="history">
+                    <h3>Geçmiş Tahminler</h3>
+                    <ul id="guess-history">
+                        <!-- li: 50 - Daha Yukarı! -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="finished-phase" style="display: none;">
+                <div class="winner-display">
+                    <h1 id="winner-text">Kazandın!</h1>
+                    <p id="winner-details"></p>
+                </div>
+                <button class="btn btn-primary" onclick="app.showHome()">Ana Menüye Dön</button>
+            </div>
+
+            <div class="menu-buttons mt-4" id="leave-btn">
+                <button class="btn btn-ghost" onclick="app.showHome()">Oyundan Çık</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION SYSTEM -->
+    <div id="notification">Mesaj</div>
+
+    <script src="app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW Registration failed', err));
+        });
+      }
+    </script>
+</body>
+</html>
