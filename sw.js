@@ -1,11 +1,13 @@
 const CACHE_NAME = 'tahmin-biz-v1';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/app.js',
-    '/logo.png',
-    '/manifest.json'
+    './',
+    'index.html',
+    'style.css',
+    'app.js',
+    'logo.png',
+    'icon-192.png',
+    'icon-180.png',
+    'manifest.json'
 ];
 
 self.addEventListener('install', (e) => {
